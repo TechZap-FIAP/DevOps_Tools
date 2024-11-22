@@ -10,23 +10,17 @@ Esta documentação descreve a plataforma **S.O.L** da empresa **TechZap**, uma 
 - **RM97967** - Vinicius Oliveira de Almeida - Mastering Database
 - **RM98644** - Thiago Martins Bezerra - Disruptive Architectures (IA)
 
-# Links Utéis
-
-[Link do Vídeo Pitch]()
-
-[Link da APITechZap .NET na Web utilizando a Azure Pipelines]()
-
 # Primeiros Passos
 
-No Portal da Azure Cloud, vá em CLI e ative os recursos para utilização da CLI.
+Abra o projeto clicando no arquivo **APITechZap.sln**
 
-Faça os seguintes passos para criar o WebApp que será utilizado no Azure DevOps para subir a API,
+Após isto, abra os seguintes arquivos: 
+- techzap-firebase.json
+- appsettings.json
 
- - touch ./webapp_create.sh
- - nano ./webapp_create.sh (Copie tudo do arquivo DotNet-WebApp.txt no Repositório e cole dentro do arquivo .sh)
- - cat ./webapp_create.sh (Imprime os dados dentro do arquivo, apenas para verificação)
- - chmod +x ./webapp_create.sh (Muda a permissão do arquivo)
- - ./webapp_create.sh (Executa o arquivo)
+Coloque os dados que estão nos arquivos do Drive abaixo,
+
+- [Link das Credenciais](https://drive.google.com/drive/folders/1_hxC8T8OORYzpQQ6GbnM_xU3mdbvykQR?usp=sharing)
 
 # API Endpoints
 
