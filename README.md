@@ -30,6 +30,10 @@ Faça os seguintes passos para criar o WebApp que será utilizado no Azure DevOp
  - chmod +x ./webapp_create.sh (Muda a permissão do arquivo)
  - ./webapp_create.sh (Executa o arquivo)
 
+# Desenho de Arquitetura
+
+![Desenho da Arquitetura DevOps](<Arquitetura Azure DevOps.jpg>)
+
 # API Endpoints
 
 ## Address Controller
