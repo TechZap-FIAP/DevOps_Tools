@@ -5,6 +5,7 @@ trigger:
 
 pool:
   name: Azure Pipelines
+  image: 'windows-latest'
   demands:
   - msbuild
   - visualstudio
