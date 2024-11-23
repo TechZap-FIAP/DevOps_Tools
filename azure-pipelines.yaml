@@ -1,3 +1,8 @@
+trigger:
+  branches:
+    include:
+      - main
+
 pool:
   name: Azure Pipelines
   demands:
@@ -54,7 +59,7 @@ steps:
                                          -replace '\$\(API_KEY_OPENAI\)', '$(API_KEY_OPENAI)' |
     Set-Content $appSettingsJsonPath
   displayName: 'Substituir variáveis nos arquivos JSON'
-  
+
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 6.6.1'
   inputs:
