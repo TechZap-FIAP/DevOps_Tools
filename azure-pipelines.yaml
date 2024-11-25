@@ -5,62 +5,15 @@ trigger:
 
 pool:
   name: Azure Pipelines
-  image: 'windows-latest'
+  vmImage: 'windows-latest'
   demands:
   - msbuild
   - visualstudio
 
 variables:
   solution: '**\*.sln'
-  BuildPlatform: 'Any CPU'
-  BuildConfiguration: 'Release'
-  ArtifactName: 'TechZap-ASP.NET-CI'
-
-  # Variáveis do Firebase
-  TYPE: '$(TYPE)'
-  PROJECT_ID: '$(PROJECT_ID)'
-  PRIVATE_KEY_ID: '$(PRIVATE_KEY_ID)'
-  PRIVATE_KEY: '$(PRIVATE_KEY)'
-  CLIENT_EMAIL: '$(CLIENT_EMAIL)'
-  CLIENT_ID: '$(CLIENT_ID)'
-  AUTH_URI: '$(AUTH_URI)'
-  TOKEN_URI: '$(TOKEN_URI)'
-  AUTH_PROVIDER_X509_CERT_URL: '$(AUTH_PROVIDER_X509_CERT_URL)'
-  CLIENT_X509_CERT_URL: '$(CLIENT_X509_CERT_URL)'
-  UNIVERSE_DOMAIN: '$(UNIVERSE_DOMAIN)'
-
-  # Variáveis de configuração
-  CONNECTION_STRING_ORACLE: '$(CONNECTION_STRING_ORACLE)'
-  API_KEY_FIREBASE: '$(API_KEY_FIREBASE)'
-  API_KEY_OPENAI: '$(API_KEY_OPENAI)'
 
 steps:
-- script: |
-    # Caminho para os arquivos JSON
-    $firebaseJsonPath = 'techzap-firebase.json'
-    $appSettingsJsonPath = 'appsettings.json'
-
-    # Substitui os placeholders no techzap-firebase.json
-    (Get-Content $firebaseJsonPath) -replace '\$\(TYPE\)', '$(TYPE)' `
-                                      -replace '\$\(PROJECT_ID\)', '$(PROJECT_ID)' `
-                                      -replace '\$\(PRIVATE_KEY_ID\)', '$(PRIVATE_KEY_ID)' `
-                                      -replace '\$\(PRIVATE_KEY\)', '$(PRIVATE_KEY)' `
-                                      -replace '\$\(CLIENT_EMAIL\)', '$(CLIENT_EMAIL)' `
-                                      -replace '\$\(CLIENT_ID\)', '$(CLIENT_ID)' `
-                                      -replace '\$\(AUTH_URI\)', '$(AUTH_URI)' `
-                                      -replace '\$\(TOKEN_URI\)', '$(TOKEN_URI)' `
-                                      -replace '\$\(AUTH_PROVIDER_X509_CERT_URL\)', '$(AUTH_PROVIDER_X509_CERT_URL)' `
-                                      -replace '\$\(CLIENT_X509_CERT_URL\)', '$(CLIENT_X509_CERT_URL)' `
-                                      -replace '\$\(UNIVERSE_DOMAIN\)', '$(UNIVERSE_DOMAIN)' |
-    Set-Content $firebaseJsonPath
-
-    # Substitui os placeholders no appsettings.json
-    (Get-Content $appSettingsJsonPath) -replace '\$\(CONNECTION_STRING_ORACLE\)', '$(CONNECTION_STRING_ORACLE)' `
-                                         -replace '\$\(API_KEY_FIREBASE\)', '$(API_KEY_FIREBASE)' `
-                                         -replace '\$\(API_KEY_OPENAI\)', '$(API_KEY_OPENAI)' |
-    Set-Content $appSettingsJsonPath
-  displayName: 'Substituir variáveis nos arquivos JSON'
-
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 6.6.1'
   inputs:
@@ -93,16 +46,3 @@ steps:
     PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: '$(Parameters.ArtifactName)'
   condition: succeededOrFailed()
-
-- script: |
-    echo "Connecting to Oracle Database..."
-    sqlcmd -S $(CONNECTION_STRING_ORACLE) -Q "SELECT 1"
-  displayName: 'Test Oracle Connection'
-
-- script: |
-    echo "Using Firebase API Key: $(API_KEY_FIREBASE)"
-  displayName: 'Display Firebase API Key'
-
-- script: |
-    echo "Using OpenAI API Key: $(API_KEY_OPENAI)"
-  displayName: 'Display OpenAI API Key'
