@@ -14,7 +14,7 @@ Esta documentação descreve a plataforma **S.O.L** da empresa **TechZap**, uma 
 
 [Link do Vídeo Pitch](https://youtu.be/vPfHoWRXsYk)
 
-[Link do Vídeo da Aplicação Funcional](https://youtu.be/)
+[Link do Vídeo da Aplicação Funcional](https://youtu.be/usg-Rg47VBU)
 
 [Link da APITechZap .NET na Web utilizando a Azure Pipelines](https://apitechzap.azurewebsites.net/swagger/index.html)
 
